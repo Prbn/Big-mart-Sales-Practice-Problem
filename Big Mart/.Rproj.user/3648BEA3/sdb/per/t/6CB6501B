@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n\n#tempA1011 <- Test.Results\nwrite.csv(tempA1011, file = 'Test.Results1 b.csv', row.names = F)\n\n# setting up new working directory for saving file using the\nsetwd(\"D:\\\\Work\\\\R\\\\R Projects\\\\Big mart Sales Practice Problem\\\\DATA\\\\Test1\")\n\n\nif(FALSE){\n  \n  \n  ### TEST SECTION\n  \n  Experiment <- backuptrain1\n  \n  rm(trainA,trainA1,testA,testA1,Train.Result,Test.Results)\n  # Splitting the data set\n  # ----------------------\n  \n  # Splitting the dataset into the training set and Test set\n  # Using the package caTools\n  library(caTools)\n  set.seed(123)\n  \n  split <- sample.split(Experiment$Item_Outlet_Sales, SplitRatio = 4/5)\n  \n  trainA1 <- subset(Experiment, split == TRUE)\n  testA1 <- subset(Experiment, split == FALSE)\n  \n  # Removing IDs\n  Experiment$Item_Identifier <- NULL\n  Experiment$Outlet_Identifier <- NULL\n  Experiment$Outlet_Establishment_Year <- NULL\n  \n  trainA <- subset(Experiment, split == TRUE)\n  testA <- subset(Experiment, split == FALSE)\n  \n  Test.Results <- testA1\n  Train.Results <- trainA1\n  traintestA1 <- trainA1\n  traintestA <- trainA\n  # Removing Null from test set\n  traintestA1$Item_Outlet_Sales <- NULL\n  traintestA$Item_Outlet_Sales <- NULL\n  testA1$Item_Outlet_Sales <- NULL\n  testA$Item_Outlet_Sales <- NULL\n  \n  \n  rm(split, Experiment)\n  \n  \n  \n  # Write CSV\n  makecsvsubmission <- function(dataset1, string){\n    Data1 <- data.frame(dataset1$Item_Identifier,dataset1$Outlet_Identifier, dataset1[string])\n    colnames(Data1) <- c('Item_Identifier','Outlet_Identifier','Item_Outlet_Sales')\n    string <- paste(string, ' Submission_t.csv',sep = \"\", collapse = NULL)\n    write.csv(Data1, file = string, row.names = F)\n  }\n}\n\n\n\n\n# MEGA Multiple Linear Model\n# --------------------------\n\n# Setting up training and test data\ntrainA <- Train.Results[c('Item_Outlet_Sales','Overall_Mean_Sales','Outlet_Mean_Sales','Item_Mean_Sales','Mlinearmodel','OptimalMlinearmodel','SVMRegression','DecisionRegression','RandomForestRegression2')] \ntestA <- Test.Results[c('Overall_Mean_Sales','Outlet_Mean_Sales','Item_Mean_Sales','Mlinearmodel','OptimalMlinearmodel','SVMRegression','DecisionRegression','RandomForestRegression2')] \ntraintestA <-Train.Results[c('Overall_Mean_Sales','Outlet_Mean_Sales','Item_Mean_Sales','Mlinearmodel','OptimalMlinearmodel','SVMRegression','DecisionRegression','RandomForestRegression2')] \n\n# Fitting Multiple Linear Regression to the training set.\n# Using the lm() function\n# creating regressor variable to store the linearmodel\nregressor = lm(formula = Item_Outlet_Sales ~ ., data = trainA)\n# formula = Profit ~ . is same as formula = Profit ~ R.D.Spend + Administration + Marketing.Spend + State\n\n# Information of the regressor\n# Using summary function\nsummary(regressor)\n# The function has feature to avoid dummy variable trap\n\n# Predicting the Test set results\n# Using the predict() function\n# storing the prediction into a functon\ny_pred <- predict(regressor,newdata = testA)\n# Requires the liner model to use as a basis to predict\n# newdata is the data on which the prediction is to be made\n\n# Saving Test results\nTest.Results$Megalinearmodel <- y_pred\nTrain.Results$Megalinearmodel <- predict(regressor,newdata = traintestA)\n\n# Saving results for submission\nmakecsvsubmission(Test.Results,'Megalinearmodel')\n\n\n### TEST SUCESSFULL ###\n\n",
+    "created" : 1514609670372.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4066084608",
+    "id" : "6CB6501B",
+    "lastKnownWriteTime" : 1514627166,
+    "last_content_update" : 1514627166224,
+    "path" : "D:/Work/R/R Projects/Big mart Sales Practice Problem/DATA/TEST.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 15,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# Baseline Model\n\n\n#Test.Results <- testA\n\n# Mean Based\n\nTest.Results$Overall_Mean_Sales <- mean(trainA1$Item_Outlet_Sales)\nTrain.Results$Overall_Mean_Sales <- mean(trainA1$Item_Outlet_Sales)\n\n\n# Outlet Mean Sales Based\n\nOutlet_mean_sales <- sapply(testA1$Outlet_Identifier,function(x)mean(trainA1[trainA1$Outlet_Identifier == x,'Item_Outlet_Sales']))\nTest.Results$Outlet_Mean_Sales <- Outlet_mean_sales\nTrain.Results$Outlet_Mean_Sales <- sapply(traintestA1$Outlet_Identifier,function(x)mean(trainA1[trainA1$Outlet_Identifier == x,'Item_Outlet_Sales']))\n\nrm(Outlet_mean_sales)\n\n# Item Mean Sales Based\n\nItem_mean_sales <- sapply(testA1$Item_Identifier,function(x)mean(trainA1[trainA1$Item_Identifier == x,'Item_Outlet_Sales']))\nTest.Results$Item_Mean_Sales <- Item_mean_sales\nTrain.Results$Item_Mean_Sales <- sapply(traintestA1$Item_Identifier,function(x)mean(trainA1[trainA1$Item_Identifier == x,'Item_Outlet_Sales']))\n\nrm(Item_mean_sales)\n\n# Backup\nwrite.csv(Test.Results, file = 'Test.Results1.csv', row.names = F)\n\n\n# Overall Mean\nmakecsvsubmission(Test.Results,'Overall_Mean_Sales')\n\n# Outlet Mean\nmakecsvsubmission(Test.Results,'Outlet_Mean_Sales')\n\n# Item Mean\nmakecsvsubmission(Test.Results,'Item_Mean_Sales')\n\nas.numeric()\nhead(Test.Results)\n\n",
+    "created" : 1514509338916.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "77367988",
+    "id" : "17683C86",
+    "lastKnownWriteTime" : 1514625856,
+    "last_content_update" : 1514625856922,
+    "path" : "D:/Work/R/R Projects/Big mart Sales Practice Problem/Big Mart/4_5 Baseline Model.R",
+    "project_path" : "4_5 Baseline Model.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

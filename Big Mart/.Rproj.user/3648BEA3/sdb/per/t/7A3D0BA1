@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# MEGA Multiple Linear Model\n# --------------------------\n\n# Setting up training and test data\ntrainA <- Train.Results[c('Item_Outlet_Sales','Overall_Mean_Sales','Outlet_Mean_Sales','Item_Mean_Sales','Mlinearmodel','OptimalMlinearmodel','SVMRegression','DecisionRegression','RandomForestRegression2')] \ntestA <- Test.Results[c('Overall_Mean_Sales','Outlet_Mean_Sales','Item_Mean_Sales','Mlinearmodel','OptimalMlinearmodel','SVMRegression','DecisionRegression','RandomForestRegression2')] \ntraintestA <-Train.Results[c('Overall_Mean_Sales','Outlet_Mean_Sales','Item_Mean_Sales','Mlinearmodel','OptimalMlinearmodel','SVMRegression','DecisionRegression','RandomForestRegression2')] \n\n\n# Fitting Multiple Linear Regression to the training set.\n# Using the lm() function\n# creating regressor variable to store the linearmodel\nregressor = lm(formula = Item_Outlet_Sales ~ ., data = trainA)\n# formula = Profit ~ . is same as formula = Profit ~ R.D.Spend + Administration + Marketing.Spend + State\n\n# Information of the regressor\n# Using summary function\nsummary(regressor)\n# The function has feature to avoid dummy variable trap\n\n# Predicting the Test set results\n# Using the predict() function\n# storing the prediction into a functon\ny_pred <- predict(regressor,newdata = testA)\n# Requires the liner model to use as a basis to predict\n# newdata is the data on which the prediction is to be made\n\n# Saving Test results\nTest.Results$Megalinearmodel <- y_pred\nTrain.Results$Megalinearmodel <- predict(regressor,newdata = traintestA)\n\n# Saving results for submission\nmakecsvsubmission(Test.Results,'Megalinearmodel')",
+    "created" : 1514618462518.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "347912901",
+    "id" : "7A3D0BA1",
+    "lastKnownWriteTime" : 1514630555,
+    "last_content_update" : 1514630555260,
+    "path" : "D:/Work/R/R Projects/Big mart Sales Practice Problem/DATA/MEGA Multiple Linear Model.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 14,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

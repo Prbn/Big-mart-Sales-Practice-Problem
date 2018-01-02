@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# Data Preperation #\n# ================ #\n\n# bind training & test data\nfull.d  <- bind_rows(train.d, test.d)\ntotalsummary(full.d)\n\n# Variable Editing\n# Most of the variable are factors so convertion most variables into factor\n# Factorizing\nfull.d$Item_Identifier <- as.factor(full.d$Item_Identifier)\nfull.d$Item_Fat_Content <- as.factor(full.d$Item_Fat_Content)\nfull.d$Item_Type <- as.factor(full.d$Item_Type)\nfull.d$Outlet_Identifier <- as.factor(full.d$Outlet_Identifier)\n#full.d$Outlet_Establishment_Year <- as.factor(full.d$Outlet_Establishment_Year)\nfull.d$Outlet_Size <- as.factor(full.d$Outlet_Size)\nfull.d$Outlet_Location_Type <- as.factor(full.d$Outlet_Location_Type)\nfull.d$Outlet_Type <- as.factor(full.d$Outlet_Type)\n# OR\nif(FALSE){\n  factor_vars <- c('Item_Identifier','Item_Fat_Content','Item_Type','Outlet_Identifier','Outlet_Establishment_Year','Outlet_Size','Outlet_Location_Type','Outlet_Type')\n  full.d[factor_vars] <- sapply(full.d[,factor_vars], function(x) as.factor(x))\n  \n  str(full.d)\n  rm(factor_vars)\n  # Faild only works on lists\n}\n",
+    "created" : 1514493871164.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2509395058",
+    "id" : "728D5E8B",
+    "lastKnownWriteTime" : 1514507862,
+    "last_content_update" : 1514507862001,
+    "path" : "D:/Work/R/R Projects/Big mart Sales Practice Problem/Big Mart/2 Data Preperation.R",
+    "project_path" : "2 Data Preperation.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

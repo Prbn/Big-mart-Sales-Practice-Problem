@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# Importing Data\n#---------------\n\n# setting up new working directory using the\nsetwd(\"D:\\\\Work\\\\R\\\\R Projects\\\\Big mart Sales Practice Problem\\\\DATA\")\n\n# putting the data frame into an object called stats\ntest.d <- read.csv(\"Test_u94Q5KV.csv\", stringsAsFactors = F, na.strings = c('') )\ntrain.d <- read.csv(\"Train_UWu5bXk.csv\", stringsAsFactors = F, na.strings = c(''))\n\n# --------------------------\n\n# Loading packages\n# -----------------------\n\nlibrary('ggplot2') # visualization\nlibrary('ggthemes') # visualization\nlibrary('scales') # visualization\nlibrary('dplyr') # data manipulation\nlibrary('mice') # imputation\nlibrary('randomForest') # classification algorithm\nlibrary('lubridate') # For date and time\n\ntotalsummary <- function(data.df){\n  st <- str(data.df)\n  hd <- head(data.df,n=6)\n  sm <- summary(data.df)\n  output <- list(Structure=st , Head=hd , Summary=sm)\n  return(output)\n}\n",
+    "created" : 1514493846405.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3657782199",
+    "id" : "84F6FFA1",
+    "lastKnownWriteTime" : 1514625856,
+    "last_content_update" : 1514625856542,
+    "path" : "D:/Work/R/R Projects/Big mart Sales Practice Problem/Big Mart/1 Importing Data.R",
+    "project_path" : "1 Importing Data.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# SUPPORT VECTOR REGRESSION #\n#===========================#\n\n# Regression model\n# ----------------\n\n# Using the e1071 package\nlibrary(e1071)\n\n# Fitting Support Vector Regression to the dataset\n# Using the svm() function under the e1071 library\n# creating regressor variable to store the svr\nregressor <- svm(formula = Item_Outlet_Sales ~., data = trainA, type = 'eps-regression')\n\n# The formula is dependent variable expressed as a linear combination of the independent variable\n# The data on which the to train needs to be specified.\n# The type is the the most important argument, specifies the type of model\n# The type is set to eps as it is being used for regression\n\n# Info about the regressor using summary() function\nsummary(regressor)\n\n# Prediction\n# ----------\n\n# Predicting a new result with linear Regression\ny_pred = predict(regressor,testA)\n\n# Saving Test results\nTest.Results$SVMRegression <- y_pred\nTrain.Results$SVMRegression <- predict(regressor,traintestA)\n\n# Saving results for submission\nmakecsvsubmission(Test.Results,'SVMRegression')\n\n",
+    "created" : 1514514978136.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3101918708",
+    "id" : "A23C1D85",
+    "lastKnownWriteTime" : 1514617138,
+    "last_content_update" : 1514617138670,
+    "path" : "D:/Work/R/R Projects/Big mart Sales Practice Problem/Big Mart/6 SUPPORT VECTOR REGRESSION.R",
+    "project_path" : "6 SUPPORT VECTOR REGRESSION.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

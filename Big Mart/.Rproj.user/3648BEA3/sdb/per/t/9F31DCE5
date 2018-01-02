@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# Mega RANDOM FOREST REGRESSION #\n#===============================#\n\n\n# Setting up training and test data\ntrainA <- Train.Results[c('Item_Outlet_Sales','Overall_Mean_Sales','Outlet_Mean_Sales','Item_Mean_Sales','Mlinearmodel','OptimalMlinearmodel','SVMRegression','DecisionRegression','RandomForestRegression2')] \ntestA <- Test.Results[c('Overall_Mean_Sales','Outlet_Mean_Sales','Item_Mean_Sales','Mlinearmodel','OptimalMlinearmodel','SVMRegression','DecisionRegression','RandomForestRegression2')] \ntraintestA <-Train.Results[c('Overall_Mean_Sales','Outlet_Mean_Sales','Item_Mean_Sales','Mlinearmodel','OptimalMlinearmodel','SVMRegression','DecisionRegression','RandomForestRegression2')] \n\n# Feature Scaling\n# ---------------\n\n# dataset[,] <- scale(dataset[,])\n# Decision tree does not require any Fearture Scaling\n# As the library used for regression already has featuring scaling built in, it does not requir feature scaling\n\n# Regression model\n# ----------------\n\n# Using the rpart package\nlibrary(randomForest)\n\n# Setting seed\nset.seed(1234)\n\n# Fitting Random Forest Regression to the dataset\n# Using the randomForest() function under the randomForest library\n# creating regressor variable to store the svr\nregressor <- randomForest(x = traintestA, y = trainA$Item_Outlet_Sales, ntree = 500, nodesize = 20)\n# The x argument is the independent variable and is taken in the form of a data frame.\n# The y argument is the dependent variable and is taken in the form of vector\n# The Ntrees is the number of trees to be made\n\n# Info about the regressor using summary() function\nsummary(regressor)\n\n# Prediction\n# ----------\n# Predicting a new result with linear Regression\ny_pred = predict(regressor,testA)\n\n# Saving Test results\nTest.Results$MegaRandomForestRegression2 <- y_pred\nTrain.Results$MegaRandomForestRegression2 <- predict(regressor,traintestA)\n\n\n# Saving results for submission\nmakecsvsubmission(Test.Results,'MegaRandomForestRegression2')\n\n",
+    "created" : 1514627635227.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3653130975",
+    "id" : "9F31DCE5",
+    "lastKnownWriteTime" : 1514630586,
+    "last_content_update" : 1514630586098,
+    "path" : "D:/Work/R/R Projects/Big mart Sales Practice Problem/Big Mart/Mega Random Forest.R",
+    "project_path" : "Mega Random Forest.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 17,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

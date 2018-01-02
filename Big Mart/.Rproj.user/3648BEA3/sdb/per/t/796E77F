@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# Feature Engineering #\n#=====================#\n\n# Checking if there is significant change in the outlet Types #\n#-------------------------------------------------------------#\n\ntapply(full.d[!is.na(full.d$Item_Outlet_Sales),'Item_Outlet_Sales'],full.d[!is.na(full.d$Item_Outlet_Sales),'Outlet_Type'],mean)\n\ntapply(full.d[!is.na(full.d$Item_Outlet_Sales),'Item_Outlet_Sales'],full.d[!is.na(full.d$Item_Outlet_Sales),'Outlet_Type'],summary)\n\n# Plotting a boxplot\nggplot(full.d[!is.na(full.d$Item_Outlet_Sales),], aes(x = Outlet_Type, y = Item_Outlet_Sales, fill = factor(Outlet_Type))) +\n  geom_boxplot() +\n  geom_hline(aes(yintercept=mean(full.d[!is.na(full.d$Item_Outlet_Sales),'Item_Outlet_Sales'])), colour='red', linetype='dashed', lwd=2) +\n  scale_y_continuous(labels=dollar_format()) +\n  theme_few()\n\n# As the Type of stores are different they wont be altered\n\n\n# Item visibility #\n#-----------------#\n\n# Number of rows where item visibility is zero\nnrow(full.d[full.d$Item_Visibility==0,])\n\n# Imputing the zero item visibility with the overall mean item visibility \n# full.d[full.d$Item_Visibility==0,'Item_Visibility'] <- mean(full.d[!full.d$Item_Visibility==0,'Item_Visibility'])\n\n# Imputing the zero item visibility with the mean item visibility of each store\nfull.d[full.d$Item_Visibility==0,'Item_Visibility'] <- sapply(full.d[full.d$Item_Visibility==0,'Outlet_Identifier'],function(x)mean(full.d[(!full.d$Item_Visibility == 0 & full.d$Outlet_Identifier == x),'Item_Visibility']))\n\n# Checking\nnrow(full.d[full.d$Item_Visibility==0,])==0\n\n\n# Creating a new category based on the Item Identifier\n# The Item identifier that starts with FD is for food, NC for Non Consmable and DR for Drinks\nfull.d[grep('^FD',as.character(full.d$Item_Identifier)),'Item_Category'] <- 'Food'\nfull.d[grep('^NC',as.character(full.d$Item_Identifier)),'Item_Category'] <- 'Non Consumable'\nfull.d[grep('^DR',as.character(full.d$Item_Identifier)),'Item_Category'] <- 'Drinks'\n\n# Checking if all the row are filled\nnrow(full.d[is.na(full.d$Item_Identifier),])==0\n\n# Factorizing\nfull.d$Item_Category <- factor(full.d$Item_Category)\n\n\n# Backing UP\nBackup1.5 =full.d\n\n\n# Determining The years of operation of a Outlet\nfull.d$Outler_Age <- year(now())-full.d$Outlet_Establishment_Year\n\n",
+    "created" : 1514498187363.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4063684553",
+    "id" : "796E77F",
+    "lastKnownWriteTime" : 1514630555,
+    "last_content_update" : 1514630555053,
+    "path" : "D:/Work/R/R Projects/Big mart Sales Practice Problem/Big Mart/3_5 Feature Engineering.R",
+    "project_path" : "3_5 Feature Engineering.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# Preprocessing #\n#===============#\nstr(full.d)\nbackup2 <- full.d\n#full.d <- backup2\n\n# Encoding Categorical data\nfull.d$Item_Fat_Content <- factor(full.d$Item_Fat_Content,levels = levels(full.d$Item_Fat_Content),labels = c(1:nlevels(full.d$Item_Fat_Content)))\nfull.d$Item_Type <- factor(full.d$Item_Type,levels = levels(full.d$Item_Type),labels = c(1:nlevels(full.d$Item_Type)))\n#full.d$Outlet_Establishment_Year <- factor(full.d$Outlet_Establishment_Year,levels = levels(full.d$Outlet_Establishment_Year),labels = c(1:nlevels(full.d$Outlet_Establishment_Year)))\nfull.d$Outlet_Size <- factor(full.d$Outlet_Size,levels = levels(full.d$Outlet_Size),labels = c(1:nlevels(full.d$Outlet_Size)))\nfull.d$Outlet_Location_Type <- factor(full.d$Outlet_Location_Type,levels = levels(full.d$Outlet_Location_Type),labels = c(1:nlevels(full.d$Outlet_Location_Type)))\nfull.d$Outlet_Type <- factor(full.d$Outlet_Type,levels = levels(full.d$Outlet_Type),labels = c(1:nlevels(full.d$Outlet_Type)))\nfull.d$Item_Category <- factor(full.d$Item_Category,levels = levels(full.d$Item_Category),labels = c(1:nlevels(full.d$Item_Category)))\n\n\n### Splitting the data back into the original test and training sets.\ntrainA1 <- full.d[!is.na(full.d$Item_Outlet_Sales),]\ntestA1 <- full.d[is.na(full.d$Item_Outlet_Sales),]\n\n\n\n# removing the ids\nfull.d1 <- full.d\nfull.d$Item_Identifier <- NULL\nfull.d$Outlet_Identifier <- NULL\nfull.d$Outlet_Establishment_Year <- NULL\n\n\n\n### Splitting the data back into the original test and training sets.\ntrainA<- full.d[!is.na(full.d$Item_Outlet_Sales),]\ntestA <- full.d[is.na(full.d$Item_Outlet_Sales),]\n\ntraintestA <- trainA\ntraintestA1 <- trainA1\n# Removing Null from test set\ntraintestA$Item_Outlet_Sales <- NULL\ntraintestA1$Item_Outlet_Sales <- NULL\ntestA$Item_Outlet_Sales <- NULL\n\nTest.Results <- testA1\nTrain.Results <- trainA1\n  \n\n\n# Write CSV\nmakecsvsubmission <- function(dataset1, string,addsting=''){\n  Data1 <- data.frame(dataset1$Item_Identifier,dataset1$Outlet_Identifier, dataset1[string])\n  colnames(Data1) <- c('Item_Identifier','Outlet_Identifier','Item_Outlet_Sales')\n  string <- paste(string,addsting, 'Submission.csv',sep = \" \", collapse = NULL)\n  write.csv(Data1, file = string, row.names = F)\n}\n\n# Full data process complete \n# Backup\nbackup2.5 <- full.d\nbackuptrain1 <- trainA1\nbackuptest1 <- testA1\n#full.d <- backup2.5\n\n# Setting directory of processed data\nsetwd(\"D:\\\\Work\\\\R\\\\R Projects\\\\Big mart Sales Practice Problem\\\\Test 1\")\n\n### Exporting DATA\nwrite.csv(trainA1, file = 'Train_Processed1.csv', row.names = F)\nwrite.csv(testA1, file = 'Test_Processed1.csv', row.names = F)\nwrite.csv(full.d, file = 'full_Processed1.csv', row.names = F)\n\n",
+    "created" : 1514494193206.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1756742710",
+    "id" : "58EC2800",
+    "lastKnownWriteTime" : 1514631808,
+    "last_content_update" : 1514631808288,
+    "path" : "D:/Work/R/R Projects/Big mart Sales Practice Problem/Big Mart/4 Preprocessing.R",
+    "project_path" : "4 Preprocessing.R",
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
